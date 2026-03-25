@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Digital Clock Fais</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#1e1e2f,#3a3a6a);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.clock{
+text-align:center;
+background:rgba(255,255,255,0.1);
+padding:40px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+h1{
+font-size:50px;
+margin:0;
+letter-spacing:2px;
+}
+
+p{
+margin-top:10px;
+font-size:18px;
+color:#ccc;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="clock">
+<h1 id="time">00:00:00</h1>
+<p id="date">Loading...</p>
+</div>
+
+<script>
+
+function updateClock(){
+
+let now=new Date();
+
+let hours=String(now.getHours()).padStart(2,'0');
+let minutes=String(now.getMinutes()).padStart(2,'0');
+let seconds=String(now.getSeconds()).padStart(2,'0');
+
+let time=hours+":"+minutes+":"+seconds;
+
+document.getElementById("time").textContent=time;
+
+let options={weekday:'long', year:'numeric', month:'long', day:'numeric'};
+let date=now.toLocaleDateString('id-ID', options);
+
+document.getElementById("date").textContent=date;
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+</script>
+
+</body>
+</html>
